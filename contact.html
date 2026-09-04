@@ -23,14 +23,52 @@
         <section>
             <h2>Get In Touch</h2>
 
-            <form>
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Email">
-                <textarea placeholder="Message"></textarea>
+                        <form>
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required minlength="2">
+                </div>
 
-                <!-- Labels, more input types, and validation -->
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
 
-                <button>Send</button>
+                <div>
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">-- Please choose --</option>
+                        <option value="general">General Enquiry</option>
+                        <option value="project">Project Enquiry</option>
+                        <option value="collaboration">Collaboration</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required minlength="10"></textarea>
+                </div>
+
+                <fieldset>
+                    <legend>Preferred contact method</legend>
+                    <label for="contact-email">
+                        <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                        Email
+                    </label>
+                    <label for="contact-phone">
+                        <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                        Phone
+                    </label>
+                </fieldset>
+
+                <div>
+                    <label for="newsletter">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        Subscribe to occasional updates
+                    </label>
+                </div>
+
+                <button type="submit">Send</button>
             </form>
         </section>
     </main>
