@@ -14,7 +14,7 @@ I restructured all four HTML pages using proper semantic elements and added a co
 
 ## HTML Structure & CSS Approach
 
-Each page follows a consistent semantic structure: a `header` containing the page heading and site-wide `nav`, a `main` element wrapping the page's core content in `section` or `article` elements, and a `footer` with contact details. I kept non-semantic `div` usage minimal, reserving `div` elements only for grouping form fields where no more appropriate semantic element applied.
+Each page follows a consistent semantic structure: a `header` containing the page heading and site-wide `nav`, a `main` element wrapping the page's core content in `section` or `article` elements, and a `footer` with contact details. I avoided non-semantic div elements entirely, using <p> tags to group form fields instead, since a paragraph is a more appropriate semantic container than a generic div for this purpose.
 
 For CSS, I organised the stylesheet into clearly commented sections (base styles, header/nav, hero, sections, table, project cards, form, footer, responsive). I used CSS custom properties (`:root` variables) to keep the colour palette and spacing consistent and easy to maintain, and layered in pseudo-classes (`:hover`, `:focus`, `:nth-child`) and pseudo-elements (`::before`) for interactive polish — including a CSS-only skill proficiency bar system driven entirely by a custom property (`--pct`) rather than JavaScript.
 
