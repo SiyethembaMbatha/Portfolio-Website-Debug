@@ -1,42 +1,68 @@
 /* =====================================================
-   Portfolio Website Stylesheet
-   Organised by section: base, layout, navigation,
-   hero, table, form, footer, and interactive states
+   Portfolio Website Stylesheet — dark, editor-inspired theme
+   Organised by section: variables, base, header/nav, hero,
+   sections, table, cards, form, footer, responsive
    ===================================================== */
 
+/* --- Design tokens (custom properties) --- */
+:root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --panel-2: #1c2129;
+    --line: #2a313c;
+    --accent: #7dd3fc;
+    --accent-dim: #3d6b80;
+    --text: #e6edf3;
+    --muted: #8b96a5;
+    --radius: 8px;
+    --mono: 'Courier New', Courier, monospace;
+}
+
 /* --- Base element styles --- */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    color: #222;
-    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
 }
 
 h1, h2, h3 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--mono);
+    letter-spacing: -0.01em;
+}
+
+a {
+    color: var(--accent);
 }
 
 /* --- Header --- */
 header {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    padding: 20px 30px;
+    background-color: var(--panel);
+    color: var(--text);
+    padding: 24px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border-bottom: 1px solid var(--line);
 }
 
 header h1 {
-    margin: 0 0 10px 0;
+    margin: 0 0 12px 0;
+    font-size: 26px;
 }
 
 /* --- Navigation (element + descendant + pseudo-class selectors) --- */
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 26px;
     margin: 0;
     padding: 0;
 }
@@ -46,56 +72,72 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ffffff;
+    position: relative;
+    color: var(--muted);
     text-decoration: none;
-    padding: 8px 14px;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    font-family: var(--mono);
+    font-size: 14px;
+    padding: 8px 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+nav ul li a::before {
+    content: "// ";
+    color: var(--accent-dim);
 }
 
 nav ul li a:hover,
 nav ul li a:focus {
-    background-color: #444444;
-    border-color: #ffffff;
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
-/* --- Hero section (class selector) --- */
+/* --- Hero section (class selector, layered gradient background) --- */
 .hero {
-    padding: 50px 30px;
+    padding: 60px 30px;
     margin: 0;
     width: 100%;
-    box-sizing: border-box;
-    background-color: #d6ecf7;
-    color: #123047;
+    background-color: var(--panel);
+    background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text);
     text-align: center;
-}
-
-.hero h2,
-.hero p {
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    border-bottom: 1px solid var(--line);
 }
 
 .hero h2 {
     font-size: 36px;
     margin-top: 0;
+    color: var(--accent);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero p {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--muted);
 }
 
 .hero img {
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     display: block;
-    margin: 20px auto 0 auto;
-    border: 3px solid #123047;
-    border-radius: 6px;
+    margin: 24px auto 0 auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
 }
 
 /* --- Intro / general sections --- */
 .intro,
 main section:not(.hero) {
-    padding: 30px;
+    padding: 40px 30px;
     margin: 0 auto;
     max-width: 900px;
 }
@@ -105,62 +147,86 @@ table {
     border-collapse: collapse;
     width: 100%;
     margin: 20px 0;
-}
-
-table caption {
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 8px;
+    font-family: var(--mono);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
 }
 
 thead th {
-    background-color: #1a1a1a;
-    color: #ffffff;
+    background-color: var(--panel-2);
+    color: var(--accent);
     text-align: left;
-    padding: 10px 14px;
-    border: 1px solid #1a1a1a;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
 }
 
 tbody td {
-    padding: 10px 14px;
-    border: 1px solid #cccccc;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: var(--panel);
 }
 
 tbody tr:hover {
-    background-color: #e0f0fa;
+    background-color: var(--panel-2);
 }
 
-/* --- Project articles (ID-style spacing demo via descendant selector) --- */
+/* --- Project articles styled as "editor" cards --- */
 main article {
-    padding: 20px;
-    margin: 0 0 20px 0;
-    border: 1px solid #dddddd;
-    border-radius: 6px;
+    position: relative;
+    padding: 24px 24px 24px 28px;
+    margin: 0 auto 24px auto;
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+main article::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #4a3238;
+    box-shadow: 18px 0 0 #4a4531, 36px 0 0 #2f3f3a;
+}
+
+main article:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-dim);
+}
+
+main article h2 {
+    margin-top: 20px;
+    color: var(--accent);
+    font-size: 18px;
 }
 
 main article img {
     width: 100%;
-    max-width: 500px;
+    max-width: 850px;
     display: block;
-    margin: 0 auto 15px auto;
-    border: 2px solid #dddddd;
+    margin: 12px auto 15px auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
 }
 
 /* --- Form styling --- */
 form {
     max-width: 600px;
     margin: 20px auto;
-    padding: 25px;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    background-color: #fafafa;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background-color: var(--panel);
 }
 
 form div {
@@ -170,8 +236,9 @@ form div {
 form label {
     display: block;
     margin: 0 0 6px 0;
-    font-weight: bold;
-    color: #1a1a1a;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
 }
 
 form input[type="text"],
@@ -179,10 +246,11 @@ form input[type="email"],
 form select,
 form textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #aaaaaa;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
     border-radius: 4px;
-    box-sizing: border-box;
+    background-color: var(--bg);
+    color: var(--text);
     font-family: inherit;
     font-size: 14px;
 }
@@ -190,8 +258,9 @@ form textarea {
 form input:focus,
 form select:focus,
 form textarea:focus {
-    border-color: #123047;
-    outline: 2px solid #d6ecf7;
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.2);
 }
 
 form textarea {
@@ -200,53 +269,61 @@ form textarea {
 }
 
 fieldset {
-    border: 1px solid #aaaaaa;
+    border: 1px solid var(--line);
     border-radius: 4px;
     padding: 12px 16px;
     margin: 0 0 18px 0;
 }
 
 fieldset legend {
-    font-weight: bold;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
     padding: 0 6px;
 }
 
 fieldset label {
     display: inline-block;
-    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
     margin-right: 20px;
+    color: var(--text);
 }
 
 form button {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    padding: 12px 24px;
+    background-color: var(--accent);
+    color: #0a0d12;
+    padding: 12px 26px;
     border: none;
     border-radius: 4px;
-    font-size: 15px;
+    font-family: var(--mono);
+    font-weight: bold;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 form button:hover,
 form button:focus {
-    background-color: #444444;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -6px rgba(125, 211, 252, 0.5);
 }
 
 /* --- Footer --- */
 footer {
-    background-color: #333333;
-    color: #ffffff;
-    padding: 20px;
+    background-color: var(--panel-2);
+    color: var(--muted);
+    padding: 24px;
     text-align: center;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 13px;
 }
 
 footer a {
-    color: #d6ecf7;
+    color: var(--accent);
 }
 
 footer a:hover {
-    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -263,6 +340,68 @@ footer a:hover {
     }
 
     form {
-        padding: 15px;
+        padding: 16px;
     }
+}
+
+/* --- Reduced motion accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* --- Skill proficiency bars (CSS custom property driven, no JS) --- */
+.skill-bar {
+    position: relative;
+    display: block;
+    height: 28px;
+    background-color: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    position: absolute;
+    inset: 0;
+    width: var(--pct);
+    background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+    border-radius: 4px;
+}
+
+.skill-bar-text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+}
+
+/* --- Photo with side caption --- */
+figure {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 16px 0 0 0;
+    flex-wrap: wrap;
+}
+
+figure img {
+    max-width: 280px;
+    margin: 0;
+}
+
+figcaption {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 16px;
+    border-left: 3px solid var(--accent-dim);
+    color: var(--muted);
+    font-style: italic;
+    font-size: 14px;
 }
